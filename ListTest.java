@@ -56,6 +56,18 @@ public abstract class ListTest {
     assertEquals(e.get(0), "Hello");
   }
 
+  @Test
+  public void testAddShiftMiddle()
+  {
+    for(int i = 0; i < 4; i++)
+    {
+      e.add("hello");
+    }
+
+    e.add(2, "nate");
+    assertEquals(e.get(2), "nate");
+  }
+
   /**********************************/
   /* Testing valid and invalid gets */
   /**********************************/
@@ -85,9 +97,21 @@ public abstract class ListTest {
     assertEquals(f.indexOf("hello"), -1);
   }
 
+  @Test
+  public void testValidRemove2()
+  {
+    f.remove(0);
+    assertEquals(f.indexOf("World"), 0);
+  }
+
   @Test(expected = IndexOutOfBoundsException.class)
   public void testInvalidRemove() {
     f.remove(2);
+  }
+
+  @Test (expected = IndexOutOfBoundsException.class)
+  public void testNegativeRemove(){
+    f.remove(-1);
   }
 
   /***********************************/
@@ -109,5 +133,40 @@ public abstract class ListTest {
   /* Testing isEmpty                 */
   /***********************************/
 
-  //TODO write these tests.
+  @Test
+  public void testActuallyEmpty(){
+    assertTrue(e.isEmpty());
+  }
+
+  @Test
+  public void testNotEmpty(){
+    assertFalse(f.isEmpty());
+  }
+
+  /***********************************/
+  /* Testing clear                   */
+  /***********************************/
+
+  @Test(expected = IndexOutOfBoundsException.class)
+  public void testClear(){
+    f.clear();
+    f.get(0);
+  }
+
+  @Test
+  public void testClearTrivial(){
+    e.clear();
+    assertTrue(e.isEmpty());
+  }
+
+  /******************************/
+  /* Testing .equals            */
+  /******************************/
+
+  @Test
+  public void testInvalidClass() {
+    e.add("Hello");
+    e.add("World");
+    assertTrue(e.equals(f));
+  }
 }
