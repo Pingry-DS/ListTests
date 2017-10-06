@@ -114,7 +114,7 @@ public interface SimpleList<E> {
 
 
     /**
-     * Removes all of the elements from this list (optional operation).
+     * Removes all of the elements from this list.
      * The list will be empty after this call returns.
      */
 
